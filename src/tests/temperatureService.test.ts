@@ -13,7 +13,7 @@ describe('weatherSearcher', () => {
             }
         };
         (axios.get as jest.Mock).mockResolvedValue(mockResponse);
-        
+
         const temperature: number = await weatherSearcher('Sao Paulo');
 
         expect(temperature).toBe(20);
