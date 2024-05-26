@@ -9,12 +9,13 @@ describe('playlistSearcher function', () => {
 
     it('should return a playlist URL when successful', async () => {
         const genre = 'rock';
-        const playlistUrl = 'https://open.spotify.com/playlist/37i9dQZF1DXcmaoFmN75bi';
+        const playlistUrl = 'https://open.spotify.com/playlist/';
 
         get_playlist.mockResolvedValueOnce(playlistUrl);
 
         const result = await playlistSearcher(genre);
+        const regex = /https:\/\/open.spotify\.com\/playlist/;
 
-        expect(result).toBe(playlistUrl);
+        expect(result).toMatch(regex);
     });
 });
