@@ -25,6 +25,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Set up environment variables
+        run: echo "SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }}" >> $GITHUB_ENV
+        run: echo "SPOTIFY_CLIENT_SECRECT=${{ secrets.SPOTIFY_CLIENT_SECRECT }}" >> $GITHUB_ENV
+        run: echo "WEATHER_API_URL=${{ secrets.WEATHER_API_URL }}" >> $GITHUB_ENV
+        run: echo "WEATHER_API_KEY=${{ secrets.WEATHER_API_KEY }}" >> $GITHUB_ENV
+
       - name: Run tests
         run: npm test
 
