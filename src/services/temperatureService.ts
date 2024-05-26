@@ -9,7 +9,7 @@ export const weatherSearcher = async (city: string): Promise<number> => {
         const url: string = openWeatherMapUrlBase.replace('__CITY__', encodeURI(city));
         const response = await axios.get(url);
         return response.data.main.temp;
-    } catch (e) {
+    } catch (e: any) {
         throw new Error("error while trying to search the weather");
     }
 };
