@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   pull_request:
@@ -38,31 +38,25 @@ jobs:
       - name: Build project
         run: npm run build
 
-name: CD
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    needs: build
 
-    - name: SSH into EC2 and execute commands
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          cd /home/${{ secrets.EC2_USER }}/musicWeather
-          echo "Entrou na pasta"
-          git pull origin main
-          echo "Fez git pull"
-          npm install
-          echo "Fez npm install"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: SSH into EC2 and execute commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/${{ secrets.EC2_USER }}/musicWeather
+            echo "Entrou na pasta"
+            git pull origin main
+            echo "Fez git pull"
+            npm install
+            echo "Fez npm install"
