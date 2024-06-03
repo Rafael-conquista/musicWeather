@@ -51,7 +51,7 @@ Neste projeto, desenvolvi uma API que fornece recomendações de playlists basea
 
 **EXEMPLO DE REQUISIÇÃO:**
 
-http://18.229.118.160:3000/api/music/Salvador
+[http://18.229.118.160:3000/api/music/Salvador](http://18.229.132.1:3000/api/music/sao%20paulo)
 
 obs: essa rota está disponível para o acesso a partir da ec2 da aws
 
